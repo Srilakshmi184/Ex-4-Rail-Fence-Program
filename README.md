@@ -25,58 +25,55 @@ STEP-5: Read the characters row wise or column wise in the former order to get t
 ```
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 int main()
 {
-    char str[1000];
-    int rails, len;
-    int i, j;
-
-    printf("Enter a Secret Message:\n");
-    fgets(str, sizeof(str), stdin);
-    str[strcspn(str, "\n")] = '\0';
-
-    printf("Enter number of rails:\n");
-    scanf("%d", &rails);
-
-    len = strlen(str);
-    char rail[rails][len];
-    for (i = 0; i < rails; i++)
+int i, j, k, l;
+char a[20], c[20], d[20];
+printf("\n\t\tRAIL FENCE TECHNIQUE\n");
+printf("\nEnter the input string: ");
+fgets(a, sizeof(a), stdin);
+l = strlen(a);
+for (i = 0, j = 0; i < l; i++)
+{
+    if (i % 2 == 0)
     {
-        for (j = 0; j < len; j++)
-        {
-            rail[i][j] = '\n';
-        }
+    c[j++] = a[i];
     }
-    int row = 0;
-    int dir_down = 0; 
-
-    for (j = 0; j < len; j++)
+}
+for (i = 0; i < l; i++)
+{
+    if (i % 2 == 1)
     {
-        rail[row][j] = str[j];
-        if (row == 0)
-            dir_down = 1;
-        else if (row == rails - 1)
-            dir_down = 0;
-        row += dir_down ? 1 : -1;
+    c[j++] = a[i];
     }
-    printf("Encrypted Message: ");
-    for (i = 0; i < rails; i++)
-    {
-        for (j = 0; j < len; j++)
-        {
-            if (rail[i][j] != '\n')
-                printf("%c", rail[i][j]);
-        }
-    }
-    printf("\n");
-
-    return 0;
+}
+c[j] = '\0'; 
+printf("\nCipher text after applying rail fence: %s\n", c); 
+if(l%2==0)
+{
+k = l / 2;
+}
+else
+{
+k = (l / 2) + 1;
+}
+for (i = 0, j = 0; i < k; i++)
+{
+d[j] = c[i]; j += 2;
+}
+for (i = k, j = 1; i < l; i++)
+{
+d[j] = c[i]; j += 2;
+}
+d[l] = '\0'; 
+printf("\nText after decryption: %s\n", d);
+return 0;
 }
 ```
 ## OUTPUT
 
-<img width="581" height="241" alt="Screenshot 2025-09-03 at 2 25 57 PM" src="https://github.com/user-attachments/assets/3a28d95c-508d-4cfc-b37a-726f4bc5357c" />
+<img width="735" height="385" alt="Screenshot 2025-09-24 at 1 30 20 PM" src="https://github.com/user-attachments/assets/34a4f32a-aaaf-4202-ac4b-c40d7da98247" />
+
 
 ## RESULT
 
